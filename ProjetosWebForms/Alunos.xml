@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Alunos>
+	<Aluno>
+		<ID>1</ID>
+		<Nome>Andre</Nome>
+		<Matricula>300101</Matricula>
+		<Curso>ADS</Curso>
+	</Aluno>
+
+	<Aluno>
+		<ID>2</ID>
+		<Nome>Carlos</Nome>
+		<Matricula>300113</Matricula>
+		<Curso>ADS</Curso>
+	</Aluno>
+
+	<Aluno>
+		<ID>3</ID>
+		<Nome>José Filho</Nome>
+		<Matricula>300987</Matricula>
+		<Curso>ADS</Curso>
+	</Aluno>
+
+	<Aluno>
+		<ID>4</ID>
+		<Nome>Max</Nome>
+		<Matricula>300122</Matricula>
+		<Curso>ADS</Curso>
+	</Aluno>
+
+	<Aluno>
+		<ID>5</ID>
+		<Nome>Fernando</Nome>
+		<Matricula>300333</Matricula>
+		<Curso>ADS</Curso>
+	</Aluno>
+
+	<Aluno>
+		<ID>6</ID>
+		<Nome>Felipe</Nome>
+		<Matricula>300999</Matricula>
+		<Curso>ADS</Curso>
+	</Aluno>
+
+	<Aluno>
+		<ID>7</ID>
+		<Nome>Pedro</Nome>
+		<Matricula>300222</Matricula>
+		<Curso>ADS</Curso>
+	</Aluno>
+
+	<Aluno>
+		<ID>8</ID>
+		<Nome>Fábio</Nome>
+		<Matricula>300222</Matricula>
+		<Curso>ADS</Curso>
+	</Aluno>
+
+	<Aluno>
+		<ID>9</ID>
+		<Nome>Adson</Nome>
+		<Matricula>300777</Matricula>
+		<Curso>ADS</Curso>
+	</Aluno>
+
+	<Aluno>
+		<ID>10</ID>
+		<Nome>Valdomiro</Nome>
+		<Matricula>300244</Matricula>
+		<Curso>ADS</Curso>
+	</Aluno>
+</Alunos>
