@@ -119,6 +119,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Aluno.cs" />
+    <Compile Include="AlunoDAO.cs" />
     <Compile Include="Conexao.cs" />
     <Compile Include="Exemplo_01.aspx.cs">
       <DependentUpon>Exemplo_01.aspx</DependentUpon>

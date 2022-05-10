@@ -20,51 +20,6 @@ namespace ProjetosWebForms
             return dr;
         }
 
-        public bool InserirAluno(Aluno a)
-        {
-            MySqlConnection con = new MySqlConnection(Conexao.StringConexao());
-            con.Open();
-            MySqlCommand comando = new MySqlCommand("INSERT INTO Aluno(Nome, Matricula, Curso) " +
-                "VALUES (@Nome,@Matricula,@Curso)", con);
-
-            comando.Parameters.AddWithValue("@Nome", a.Nome);
-            comando.Parameters.AddWithValue("@Matricula", a.Matricula);
-            comando.Parameters.AddWithValue("@Curso", a.Curso);
-
-            MySqlDataReader dr = comando.ExecuteReader();
-
-            return dr.RecordsAffected > 0;
-        }
-
-        public bool EditarAluno(Aluno a)
-        {
-            MySqlConnection con = new MySqlConnection(Conexao.StringConexao());
-            con.Open();
-            MySqlCommand comando = new MySqlCommand("UPDATE Aluno SET nome = @Nome," +
-                " matricula = @Matricula, curso = @Curso WHERE id=@ID", con);
-
-            comando.Parameters.AddWithValue("@ID", a.Id);
-            comando.Parameters.AddWithValue("@Nome", a.Nome);
-            comando.Parameters.AddWithValue("@Matricula", a.Matricula);
-            comando.Parameters.AddWithValue("@Curso", a.Curso);
-
-            MySqlDataReader dr = comando.ExecuteReader();
-
-            return dr.RecordsAffected > 0;
-        }
-
-        public bool ExcluirAluno(Aluno a)
-        {
-            MySqlConnection con = new MySqlConnection(Conexao.StringConexao());
-            con.Open();
-            MySqlCommand comando = new MySqlCommand("DELETE FROM Aluno WHERE ID=@ID", con);
-
-            comando.Parameters.AddWithValue("@ID", a.Id);
-            MySqlDataReader dr = comando.ExecuteReader();
-
-            return dr.RecordsAffected > 0;
-        }
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -76,11 +31,12 @@ namespace ProjetosWebForms
         protected void btnAdicionar_Click(object sender, EventArgs e)
         {
             Aluno aln = new Aluno();
+            AlunoDAO alnDAO = new AlunoDAO();
             aln.Nome = txtNome_Add.Text;
             aln.Matricula = txtMatricula_Add.Text;
             aln.Curso = txtCurso_Add.Text;
 
-            if (InserirAluno(aln))
+            if (alnDAO.InserirAluno(aln))
             {
                 lblRetornoOperacao.Text = "Aluno adicionado com sucesso.";
                 txtNome_Add.Text = string.Empty;
@@ -93,19 +49,20 @@ namespace ProjetosWebForms
             }
 
             Grid.ListarDados(gvdAlunos, CarregarDadosBanco());
-        }
+        } //adicionando dados
 
-        protected void gvdAlunos_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+        protected void gvdAlunos_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e) //cancelando edição
         {
             gvdAlunos.EditIndex = -1;
             Grid.ListarDados(gvdAlunos, CarregarDadosBanco());
         }
 
-        protected void gvdAlunos_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        protected void gvdAlunos_RowDeleting(object sender, GridViewDeleteEventArgs e) //removendo dados
         {
             Aluno a = new Aluno();
+            AlunoDAO alnDAO = new AlunoDAO();
             a.Id = Convert.ToInt32((gvdAlunos.Rows[e.RowIndex].FindControl("lblId") as Label).Text);
-            if (ExcluirAluno(a))
+            if (alnDAO.ExcluirAluno(a))
             {
                 lblRetornoOperacao.Text = "Aluno excluido com sucesso.";
             }
@@ -117,21 +74,22 @@ namespace ProjetosWebForms
             Grid.ListarDados(gvdAlunos, CarregarDadosBanco());
         }
 
-        protected void gvdAlunos_RowEditing(object sender, GridViewEditEventArgs e)
+        protected void gvdAlunos_RowEditing(object sender, GridViewEditEventArgs e) //preparando para edição
         {
             gvdAlunos.EditIndex = e.NewEditIndex;
             Grid.ListarDados(gvdAlunos, CarregarDadosBanco());
         }
 
-        protected void gvdAlunos_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        protected void gvdAlunos_RowUpdating(object sender, GridViewUpdateEventArgs e) //alterando dados
         {
             Aluno a = new Aluno();
+            AlunoDAO alnDAO = new AlunoDAO();
             GridViewRow linha = gvdAlunos.Rows[e.RowIndex];
-            a.Id = Convert.ToInt32((gvdAlunos.Rows[e.RowIndex].FindControl("lblId") as Label).Text);
+            a.Id = Convert.ToInt32((linha.FindControl("lblId") as Label).Text);
             a.Matricula = (linha.FindControl("txtMatricula") as TextBox).Text;
             a.Nome = (linha.FindControl("txtNome") as TextBox).Text;
             a.Curso = (linha.FindControl("txtCurso") as TextBox).Text;
-            if (EditarAluno(a))
+            if (alnDAO.EditarAluno(a))
             {
                 lblRetornoOperacao.Text = "Aluno alterado com sucesso.";
             }
