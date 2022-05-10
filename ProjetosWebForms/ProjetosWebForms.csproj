@@ -114,6 +114,7 @@
     <Content Include="Exemplo_03.aspx" />
     <Content Include="Exemplo_04.aspx" />
     <Content Include="Exemplo_05.aspx" />
+    <Content Include="Exemplo_06.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -153,6 +154,13 @@
     </Compile>
     <Compile Include="Exemplo_05.aspx.designer.cs">
       <DependentUpon>Exemplo_05.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Exemplo_06.aspx.cs">
+      <DependentUpon>Exemplo_06.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Exemplo_06.aspx.designer.cs">
+      <DependentUpon>Exemplo_06.aspx</DependentUpon>
     </Compile>
     <Compile Include="Grid.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
